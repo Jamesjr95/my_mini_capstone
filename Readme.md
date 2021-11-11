@@ -1,4 +1,0 @@
-# Project description
----
-
-## News notifications
