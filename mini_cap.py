@@ -4,7 +4,7 @@
 
 import requests
 import webbrowser
-from win10toast_click import ToastNotifier
+from win10toast_click import ToastNotifier 
 
 
 def open_url():
