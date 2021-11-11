@@ -40,7 +40,7 @@ while True:
     user_news = news_options.get(user_news)
 
 
-    response = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&category={user_news}&apiKey=a93c9503b41e4190bcd984283be48d78')
+    response = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&category={user_news}&apiKey=')
     data = response.json()['articles']
     
     name = (data[i]['source']['name']) # name of creator of article
