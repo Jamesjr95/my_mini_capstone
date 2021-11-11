@@ -5,7 +5,16 @@
 import requests
 import webbrowser
 from win10toast_click import ToastNotifier
-import time
+
+
+def open_url():
+        try:
+            webbrowser.open_new(url)
+            print('Opening URL...')
+        except:
+            print('Failed to open URL. Unsupported variable type.')
+
+toaster = ToastNotifier()
 
 news_options = {
     '1': 'science',
@@ -17,43 +26,30 @@ news_options = {
     '7': 'technology'
 }
 
-print('Get news notifications')
 
-for label, option in news_options.items():
-    print(f'\n{label}. {option}')
-
-user_news = input('\nEnter the number of the topic you want\n\n>> ')
-
-user_news = news_options.get(user_news)
-
-
-response = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&category={user_news}&apiKey=a93c9503b41e4190bcd984283be48d78')
-data = response.json()['articles']
-
-
-
-x = 1 
 i = 0  
-while x < 2:    
-    name = (data[i]['source']['name'])
-    author = (data[i]['author'])
+while True:
+    
+    print('Get news notifications')
+
+    for label, option in news_options.items():
+        print(f'\n{label}. {option}')
+
+    user_news = input('\nEnter the number of the topic you want\n\n>> ')
+
+    user_news = news_options.get(user_news)
+
+
+    response = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&category={user_news}&apiKey=a93c9503b41e4190bcd984283be48d78')
+    data = response.json()['articles']
+    
+    name = (data[i]['source']['name']) # name of creator of article
     title = (data[i]['title'])
     url = (data[i]['url'])
 
-    #print(url)
+    
 
-
-
-
-
-    def open_url():
-        try:
-            webbrowser.open_new(url)
-            print('Opening URL...')
-        except:
-            print('Failed to open URL. Unsupported variable type.')
-
-    toaster = ToastNotifier()
+    toaster = ToastNotifier() # create an instance of toaster
 
     toaster.show_toast(
         (data[i]['title']), #headline of the news article
@@ -63,12 +59,20 @@ while x < 2:
         threaded=True,
         callback_on_click=open_url
     )
-    time.sleep(5)
+    
     i += 1
-    x += 1
+    
+    more_news = input('\nTo continue type continue or type q to quit\n\n >>')
+    
+    if more_news == 'q':
+        break
+    else:
+        continue
+    
+    
 
 
-#add capability of user to enter the news they want to see.
+
 
 
 
