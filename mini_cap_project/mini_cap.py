@@ -44,12 +44,12 @@ while True:
     data = response.json()['articles']
     
     name = (data[i]['source']['name']) # name of creator of article
-    title = (data[i]['title'])
+    title = (data[i]['title']) # headline of the news article
     url = (data[i]['url'])
 
     
 
-    toaster = ToastNotifier() # create an instance of toaster
+    
 
     toaster.show_toast(
         (data[i]['title']), #headline of the news article
