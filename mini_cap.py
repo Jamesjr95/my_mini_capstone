@@ -38,10 +38,11 @@ while True:
     user_news = input('\nEnter the number of the topic you want\n\n>> ')
 
     user_news = news_options.get(user_news)
-
+    
 
     response = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&category={user_news}&apiKey={google_api_key}')
     data = response.json()['articles']
+    
     
     name = (data[i]['source']['name']) # name of creator of article
     title = (data[i]['title']) # headline of the news article
@@ -60,7 +61,7 @@ while True:
         callback_on_click=open_url
     )
     
-    i += 1
+    
     
     more_news = input('\nTo continue type continue or type q to quit\n\n >>')
     
