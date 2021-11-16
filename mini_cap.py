@@ -7,6 +7,7 @@ import webbrowser
 from win10toast_click import ToastNotifier 
 
 
+
 def open_url():
         try:
             webbrowser.open_new(url)
